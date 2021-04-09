@@ -1,5 +1,13 @@
 ---
 
+- name: Disable mpm_worker and ignore warnings about missing mpm module
+  community.general.apache2_module:
+    state: absent
+    name: mpm_event
+    ignore_configcheck: True
+
+
+
 - name: Enabling MPM modules
   command: >
     a2enmod {{ item.id }}
