@@ -5,6 +5,7 @@
     state: present
     name: "{{ item.id }}"
     ignore_configcheck: True
+    force: True
   with_items: "{{ apache2_modules }}"
 
 - name: Disabling modules
@@ -12,4 +13,5 @@
     state: absent
     name: "{{ item.id }}"
     ignore_configcheck: True
+    force: True
   with_items: "{{ apache2_modules }}"
