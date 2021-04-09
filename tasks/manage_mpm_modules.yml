@@ -6,8 +6,6 @@
     name: mpm_event
     ignore_configcheck: True
 
-
-
 - name: Enabling MPM modules
   command: >
     a2enmod {{ item.id }}
