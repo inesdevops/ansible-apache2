@@ -70,3 +70,4 @@ apache2_service_state: started
 #apache2_keys_path: /etc/ssl/private
 
 default_apache2_confs: []
+mpm_modules: []

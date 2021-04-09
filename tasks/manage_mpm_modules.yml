@@ -1,0 +1,17 @@
+---
+
+- name: Enabling MPM modules
+  command: >
+    a2enmod {{ mpm_item.id }}
+  args:
+    creates: "/etc/apache2/mods-enabled/{{ mpm_item.id }}.load"
+  when: mpm_item.state is not defined or mpm_item.state != 'absent'
+  with_items: "{{ mpm_modules }}"
+
+- name: Disabling MPM modules
+  command: >
+    a2dismod {{ mpm_item.id }}
+  args:
+    removes: "/etc/apache2/mods-enabled/{{ mpm_item.id }}.load"
+  when: mpm_item.state is defined and mpm_item.state == 'absent'
+  with_items: "{{ mpm_modules }}"
