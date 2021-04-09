@@ -5,18 +5,8 @@
     name: mpm_event
     ignore_configcheck: True
 
-- name: Enabling MPM modules
-  command: >
-    a2enmod {{ item.id }}
-  args:
-    creates: "/etc/apache2/mods-enabled/{{ item.id }}.load"
-  when: item.state is not defined or item.state != 'absent'
-  with_items: "{{ mpm_modules }}"
-
-- name: Disabling MPM modules
-  command: >
-    a2dismod {{ item.id }}
-  args:
-    removes: "/etc/apache2/mods-enabled/{{ item.id }}.load"
-  when: item.state is defined and item.state == 'absent'
-  with_items: "{{ mpm_modules }}"
+- name: Disable mpm_prefork and ignore warnings about missing mpm module
+  apache2_module:
+    state: present
+    name: mpm_prefork
+    ignore_configcheck: True
