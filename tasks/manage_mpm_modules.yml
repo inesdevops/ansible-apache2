@@ -1,5 +1,4 @@
 ---
-
 - name: Disable mpm_worker and ignore warnings about missing mpm module
   community.general.apache2_module:
     state: absent
