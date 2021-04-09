@@ -1,0 +1,11 @@
+---
+- name: test and reload apache2
+  command: apache2ctl configtest
+  notify: reload apache2
+  when: mpm_prefork_is_enabled
+
+- name: Enabling mpm_prefork modules
+  apache2_module:
+    state: present
+    name: mpm_prefork
+  when: mpm_prefork_is_enabled
