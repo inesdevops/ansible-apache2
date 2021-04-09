@@ -8,6 +8,7 @@
   when: item.state is not defined or item.state != 'absent'
   with_items: "{{ apache2_modules }}"
   notify: test and reload apache2
+  ignore_configcheck: True
 
 - name: Disabling modules
   command: >
@@ -17,3 +18,4 @@
   when: item.state is defined and item.state == 'absent'
   with_items: "{{ apache2_modules }}"
   notify: test and reload apache2
+  ignore_configcheck: True
