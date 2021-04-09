@@ -51,3 +51,4 @@ apache2_service_state: started
 
 default_apache2_confs: []
 mpm_modules: []
+mpm_prefork_is_enabled: yes
