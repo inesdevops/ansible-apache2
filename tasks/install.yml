@@ -4,13 +4,3 @@
   apt:
     pkg: "{{ apache2_packages }}"
     state: present
-
-- name: Adding rules
-  copy:
-    src: "{{ item }}/"
-    dest: "/{{ item }}/"
-    owner: root
-    group: root
-    mode: "0644"
-  with_items:
-    - etc/apache2/rules

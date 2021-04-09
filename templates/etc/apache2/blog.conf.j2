@@ -1,0 +1,21 @@
+         Alias /conseils /var/www/wordpress/wordpress
+
+	 <Directory /var/www/wordpress/wordpress/>
+                Options FollowSymLinks Multiviews
+                AllowOverride All
+                php_value newrelic.appname "[PREPROD] blog.sowee.fr"
+
+                #<If "! %{HTTP:X-Forwarded-For} =~ /31\.3\.142\.1/ && ! %{HTTP:X-Forwarded-For} =~ /31\.3\.136\.12/ && ! %{HTTP:X-Forwarded-For} =~ /195\.25\.228\.205/ && ! %{HTTP:X-Forwarded-For} =~ /176\.144\.167\.253/ && ! %{HTTP:X-Forwarded-For} =~ /90\.102\.123\.61/ && ! %{HTTP:X-Forwarded-For} =~ /37\.70\.115\.139/ && ! %{HTTP:X-Forwarded-For} =~ /185\.88\.104\.18/ && ! %{HTTP:X-Forwarded-For} =~ /62\.240\.254\.57/">
+                #       AuthType Basic
+                #        AuthName "Restricted Content"
+                #        AuthUserFile /etc/apache2/.htpasswd
+                #        Require valid-user
+                #</If>
+                deny from all
+
+                #SRQ0688643
+                SetEnvIF X-Forwarded-For "176.124.41.54" AllowIP
+                Allow from env=AllowIP
+                Allow from 127.0.0.1
+
+        </Directory>

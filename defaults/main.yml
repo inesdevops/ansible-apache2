@@ -68,3 +68,7 @@ apache2_trace_enable: 'Off'
 apache2_certs_path: /etc/ssl/certs
 # path to keys
 apache2_keys_path: /etc/ssl/private
+
+default_apache2_confs:
+  - etc/apache2/apache2.conf
+  - etc/apache2/ports.conf
