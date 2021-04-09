@@ -1,4 +1,10 @@
 ---
+- name: Disabling mpm_event modules
+  apache2_module:
+    state: absent
+    name: mpm_event
+  when: mpm_prefork_is_enabled
+
 - name: test and reload apache2
   command: apache2ctl configtest
   notify: reload apache2

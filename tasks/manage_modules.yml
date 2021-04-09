@@ -12,6 +12,6 @@
   apache2_module:
     state: absent
     name: "{{ item.id }}"
-#    ignore_configcheck: True
+    ignore_configcheck: True
 #    force: True
   with_items: "{{ apache2_modules }}"
