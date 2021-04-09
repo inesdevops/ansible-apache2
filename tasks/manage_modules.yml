@@ -3,13 +3,13 @@
 - name: Enabling modules
   apache2_module:
     state: present
-    name: {{ item }}
+    name: "{{ item.id }}"
     ignore_configcheck: True
   with_items: "{{ apache2_modules }}"
 
 - name: Disabling modules
   apache2_module:
     state: absent
-    name: {{ item }}
+    name: "{{ item.id }}"
     ignore_configcheck: True
   with_items: "{{ apache2_modules }}"
