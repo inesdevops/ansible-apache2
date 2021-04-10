@@ -3,10 +3,23 @@
   command: >
     apache2ctl -M
   when: mpm_prefork_is_enabled
+  register: echo_enabled_module
+
+- name: show enabled module
+  debug: msg="{{ echo_enabled_module.stdout }}"
 
 - name: restart apache2
   service: name=apache2 state=restarted
   when: mpm_prefork_is_enabled
+
+- name: show2 enabled modules
+  command: >
+    apache2ctl -M
+  when: mpm_prefork_is_enabled
+  register: echo2_enabled_module
+
+- name: show2 enabled module
+  debug: msg="{{ echo2_enabled_module.stdout }}"
 
 - name: Disabling mpm_event modules
   apache2_module:
@@ -15,9 +28,9 @@
     ignore_configcheck: True
   when: mpm_prefork_is_enabled
 
-- name: reload apache2
-  service: name=apache2 state=reloaded
-  when: mpm_prefork_is_enabled
+#- name: reload apache2
+#  service: name=apache2 state=reloaded
+#  when: mpm_prefork_is_enabled
 
 - name: Enabling mpm_prefork modules
   apache2_module:
