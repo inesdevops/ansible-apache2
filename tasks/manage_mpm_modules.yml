@@ -11,6 +11,7 @@
   apache2_module:
     state: present
     name: mpm_prefork
+    ignore_configcheck: True
   when: mpm_prefork_is_enabled
 
 - name: restart apache2
