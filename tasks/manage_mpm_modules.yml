@@ -1,41 +1,18 @@
 ---
-- name: Disabling mpm_event modules
+- name: Force disabling default mpm_event module
   apache2_module:
     state: absent
     name: mpm_event
     ignore_configcheck: True
     force: True
   when: mpm_prefork_is_enabled
-  ignore_errors: yes
 
 - name: Enabling mpm_prefork modules
   apache2_module:
     state: present
     name: mpm_prefork
-    ignore_configcheck: True
-    force: True
   when: mpm_prefork_is_enabled
 
 - name: restart apache2
   service: name=apache2 state=restarted
   when: mpm_prefork_is_enabled
-  ignore_errors: yes
-
-- name: show3 enabled modules
-  command: >
-    apache2ctl -M
-  when: mpm_prefork_is_enabled
-  register: echo3_enabled_module
-  ignore_errors: yes
-
-- name: show3 enabled module
-  debug: msg="{{ echo3_enabled_module.stdout }}"
-  ignore_errors: yes
-
-
-
-
-#- apache2_module:
-#    state: absent
-#    name: autoindex
-#    force: True

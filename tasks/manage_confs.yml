@@ -9,7 +9,6 @@
     mode: "0644"
   when: item.template is defined
   with_items: "{{ apache2_confs }}"
-  notify: test and reload apache2
 
 - name: Enabling conf
   command: >
@@ -18,7 +17,6 @@
     creates: "/etc/apache2/conf-enabled/{{ item.id }}.conf"
   when: item.state is not defined or item.state != 'absent'
   with_items: "{{ apache2_confs }}"
-  notify: test and reload apache2
 
 - name: Disabling conf
   command: >
@@ -27,4 +25,3 @@
     removes: "/etc/apache2/conf-enabled/{{ item.id }}.conf"
   when: item.state is defined and item.state == 'absent'
   with_items: "{{ apache2_confs }}"
-  notify: test and reload apache2
