@@ -1,0 +1,10 @@
+---
+Initial role:  https://github.com/weareinteractive/ansible-apache2
+description: |
+  > * installs apache2
+  > * configures apache2
+  > * enables/disables confs
+  > * enables/disables sites
+  > * enables/disables modules
+  > * configures service
+

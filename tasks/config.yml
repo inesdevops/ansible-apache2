@@ -9,17 +9,19 @@
     mode: "0644"
   with_items: "{{ default_apache2_confs }}"
 
-- name: Create directory
+# Custom client config 
+
+- name: Create custom directory
   file:
-    path: /etc/apache2/conf
+    path: " {{custom_config_path }} "
     state: directory
     mode: "u=rwx,g=rx,o=rx"
 
-- name: add blog config
+- name: add custom config
   template:
     src: "{{ item }}.j2"
-    dest: "/etc/apache2/conf/{{ item }}"
+    dest: "{{custom_config_path }}/{{ item }}"
     owner: root
     group: root
     mode: "0644"
-  with_items: "{{ blog_conf }}"
+  with_items: "{{ custom_conf }}"
