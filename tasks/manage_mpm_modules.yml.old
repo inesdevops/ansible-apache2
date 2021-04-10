@@ -1,4 +1,31 @@
 ---
+- name: show enabled modules
+  command: >
+    apache2ctl -M
+  when: mpm_prefork_is_enabled
+  register: echo_enabled_module
+  ignore_errors: yes
+
+- name: show enabled module
+  debug: msg="{{ echo_enabled_module.stdout }}"
+  ignore_errors: yes
+
+- name: restart apache2
+  service: name=apache2 state=restarted
+  when: mpm_prefork_is_enabled
+  ignore_errors: yes
+
+- name: show2 enabled modules
+  command: >
+    apache2ctl -M
+  when: mpm_prefork_is_enabled
+  register: echo2_enabled_module
+  ignore_errors: yes
+
+- name: show2 enabled module
+  debug: msg="{{ echo2_enabled_module.stdout }}"
+  ignore_errors: yes
+
 - name: Disabling mpm_event modules
   apache2_module:
     state: absent
