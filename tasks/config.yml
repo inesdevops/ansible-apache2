@@ -12,24 +12,14 @@
 
 - name: Create custom directory
   file:
-    path: " {{ custom_config_path }} "
+    path: /etc/apache2/conf
     state: directory
     mode: "u=rwx,g=rx,o=rx"
-
-
-- name: Confirm custom directory is added
-  shell: ls -alh {{ custom_config_path }}
-  changed_when: false
-  register: echo_custom_directory                                                                                                                                 
-
-- name: show echo_custom_directory
-  debug: msg="{{ echo_custom_directory.stdout }}"
-
 
 - name: add custom config
   template:
     src: "{{ item }}.j2"
-    dest: "{{ custom_config_path }}/{{ item }}"
+    dest: "/etc/apache2/conf/{{ item }}"
     owner: root
     group: root
     mode: "0644"
