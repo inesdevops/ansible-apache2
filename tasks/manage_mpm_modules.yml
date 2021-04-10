@@ -35,20 +35,6 @@
   when: mpm_prefork_is_enabled
   ignore_errors: yes
 
-- name: reload apache2
-  service: name=apache2 state=restarted
-  when: mpm_prefork_is_enabled
-  ignore_errors: yes
-
-- name: show3 enabled modules
-  command: >
-    apache2ctl -M
-  when: mpm_prefork_is_enabled
-  register: echo3_enabled_module
-
-- name: show3 enabled module
-  debug: msg="{{ echo3_enabled_module.stdout }}"
-
 - name: Enabling mpm_prefork modules
   apache2_module:
     state: present
