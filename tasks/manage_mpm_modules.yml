@@ -1,4 +1,9 @@
 ---
+- name: show enabled modules
+  command: >
+    apache2ctl -M
+  when: mpm_prefork_is_enabled
+
 - name: restart apache2
   service: name=apache2 state=restarted
   when: mpm_prefork_is_enabled
@@ -7,6 +12,11 @@
   apache2_module:
     state: absent
     name: mpm_event
+    ignore_configcheck: True
+  when: mpm_prefork_is_enabled
+
+- name: reload apache2
+  service: name=apache2 state=reloaded
   when: mpm_prefork_is_enabled
 
 - name: Enabling mpm_prefork modules
@@ -14,3 +24,10 @@
     state: present
     name: mpm_prefork
   when: mpm_prefork_is_enabled
+
+
+
+#- apache2_module:
+#    state: absent
+#    name: autoindex
+#    force: True
