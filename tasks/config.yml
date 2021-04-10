@@ -15,6 +15,7 @@
     path: /etc/apache2/conf
     state: directory
     mode: "u=rwx,g=rx,o=rx"
+  when: custom_client_config_is_enabled
 
 - name: add custom config
   template:
@@ -24,3 +25,4 @@
     group: root
     mode: "0644"
   with_items: "{{ custom_conf }}"
+  when: custom_client_config_is_enabled

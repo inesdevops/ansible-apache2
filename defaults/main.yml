@@ -11,27 +11,6 @@
 #   - id: my_config
 #     state: present
 #     template: path/to/template.j2
-# apache2_sites:
-#   - id: mysite (required)
-#     name: mysite.local (required)
-#     ip: '*'
-#     port: 80
-#     state: present
-#     add_webroot: no
-#     template: path/to/template.j2
-#     rules: []
-#     aliases: []
-#     redirects: []
-#     ssl:
-#       port: 443
-#       key_name: mykey
-#       cert_name: mycert
-#       chain_name: mychain
-#     auth:
-#       name: mysite
-#       file: mysite
-#     append: ''
-#
 
 # packages (versions)
 apache2_packages:
@@ -48,11 +27,11 @@ apache2_remove_default: no
 apache2_service_enabled: yes
 # current state: started, stopped
 apache2_service_state: started
-
+# customize apache config
 default_apache2_confs: []
-
+# enabled/disabled mpm_prefork module
 mpm_prefork_is_enabled: yes
-
-custom_config_path: /etc/apache2/conf
-
+# add client custom config
+custom_client_config_is_enabled: yes
 custom_conf: []
+
