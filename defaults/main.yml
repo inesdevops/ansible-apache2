@@ -50,7 +50,9 @@ apache2_service_enabled: yes
 apache2_service_state: started
 
 default_apache2_confs: []
-mpm_modules: []
+
 mpm_prefork_is_enabled: yes
-custom_config_path:  /etc/apache2/conf
+
+custom_config_path: /etc/apache2/conf
+
 custom_conf: []
